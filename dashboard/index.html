@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — pre-token protocols ranked by implied value</title>
+<meta name="description" content="A radar of the protocols that record no token yet, ranked by implied launch value, each with the steps to farm it.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="dot" aria-hidden="true"></span>TOKEN LAUNCH RADAR</div>
+  <p class="tag">Which protocol with no token recorded is worth farming next — and what to do about it.</p>
+  <p class="meta" id="meta">Loading snapshot…</p>
+</header>
+
+<section class="stats" id="stats" aria-label="Board summary"></section>
+
+<section class="model" aria-label="How the value is worked out">
+  <h2>How the implied value is worked out</h2>
+  <p id="model-note">Implied value = TVL × benchmark × growth × age × breadth × category. The benchmark is the median
+  market-cap-to-TVL ratio of the protocols in this same snapshot that already record a token, so the multiple is
+  the market's own, not a picked number. Growth is the protocol's 7-day TVL change; age is how long it has run
+  with no token recorded; breadth is how many chains it runs on; category compares its peers' 7-day change with
+  the whole snapshot. Protocols that already record a token are counted below and set aside — they are not
+  launches waiting to happen. “Records no token” means the snapshot carries no token for the protocol; it is
+  not proof that none exists.</p>
+</section>
+
+<section class="controls" aria-label="Filters">
+  <label>Search <input id="q" type="search" placeholder="name or slug…" autocomplete="off"></label>
+  <label>Category <select id="cat"><option value="">All categories</option></select></label>
+  <label>Sort by
+    <select id="sort">
+      <option value="value">Implied value</option>
+      <option value="tvl">TVL</option>
+      <option value="growth">7-day growth</option>
+      <option value="age">Days listed</option>
+    </select>
+  </label>
+  <label>Min TVL
+    <select id="minTvl">
+      <option value="0">Any</option>
+      <option value="50000000">$50M+</option>
+      <option value="100000000">$100M+</option>
+      <option value="500000000">$500M+</option>
+    </select>
+  </label>
+  <label class="check"><input id="watchOnly" type="checkbox"> Watchlist only</label>
+  <span class="count" id="count"></span>
+</section>
+
+<main>
+  <table id="board">
+    <thead><tr>
+      <th data-k="rank">#</th><th data-k="name">Protocol</th><th data-k="cat">Category</th>
+      <th data-k="chains">Chains</th><th data-k="tvl">TVL</th><th data-k="growth">7d</th>
+      <th data-k="age">Listed</th><th data-k="value">Implied value</th><th>Farm</th>
+    </tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <p class="empty" id="empty" hidden>No protocol matches these filters. Clear the search or widen the category.</p>
+</main>
+
+<section class="detail" id="detail" hidden aria-label="Protocol detail">
+  <button class="close" id="closeDetail" type="button">Close ×</button>
+  <div id="detailBody"></div>
+</section>
+
+<footer>
+  <p>Data: sealed DefiLlama snapshot (see board date above). Implied values are this radar's own claim from the
+  snapshot's figures, never a prediction that a token will launch, or when. Farm plans are a starting point:
+  check the protocol's own pages before depositing, and never farm with money you cannot lose.</p>
+</footer>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
